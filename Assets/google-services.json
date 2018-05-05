@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "287169842422",
+    "firebase_url": "https://sobyong-4abf1.firebaseio.com",
+    "project_id": "sobyong-4abf1",
+    "storage_bucket": "sobyong-4abf1.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:287169842422:android:ab03b105aa8b8afe",
+        "android_client_info": {
+          "package_name": "com.firebase.sobyong"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "287169842422-68jbdv15enoq92i0n8gij1v4o0b0e61q.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDCgNpw98WnVw2IX5KSkD-nx3nfdbVzE10"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
