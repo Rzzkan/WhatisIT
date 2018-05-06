@@ -10,6 +10,7 @@ public class SearchNum : MonoBehaviour {
     public int kes = 0;
     public int ang = 0;
     public string pertanyaan;
+    public GameObject[] button;
     int index;
     int lvl = 0;
 
@@ -17,6 +18,7 @@ public class SearchNum : MonoBehaviour {
     void Start () {
         soal = GameObject.Find("Soal").GetComponent<Text>();
         angka = GameObject.FindGameObjectsWithTag("Angka");
+        button = GameObject.FindGameObjectsWithTag("Pilihan");
         Satu();
 
 
@@ -27,12 +29,6 @@ public class SearchNum : MonoBehaviour {
 	void Update () {
     }
 
-
-    void hide(){
-        for (int i = 0; i == 5; i++){
-            angka[i].GetComponentInChildren<Text>().text = "";
-        }
-    }
 
     public void Satu(){
         lvl = 1;
@@ -46,10 +42,8 @@ public class SearchNum : MonoBehaviour {
        
         int posisi = 0;
         foreach (GameObject isiAngka in angka){
-            //if (isiAngka.GetComponentInChildren<Text>().text.Length == 0){
-                isiAngka.GetComponentInChildren<Text>().text = levelSatu[posisi].ToString();
+                isiAngka.GetComponent<Text>().text = levelSatu[posisi].ToString();
                 posisi++;         
-            //}
         }
     }
 
@@ -67,7 +61,7 @@ public class SearchNum : MonoBehaviour {
         int posisi = 0;
         foreach (GameObject isiAngka in angka)
         {
-                isiAngka.GetComponentInChildren<Text>().text = levelDua[posisi].ToString();
+                isiAngka.GetComponent<Text>().text = levelDua[posisi].ToString();
                 posisi++;
         }
     }
@@ -86,7 +80,7 @@ public class SearchNum : MonoBehaviour {
         int posisi = 0;
         foreach (GameObject isiAngka in angka)
         {
-                isiAngka.GetComponentInChildren<Text>().text = levelTiga[posisi].ToString();
+                isiAngka.GetComponent<Text>().text = levelTiga[posisi].ToString();
                 posisi++;
         }
     }
@@ -105,7 +99,7 @@ public class SearchNum : MonoBehaviour {
         int posisi = 0;
         foreach (GameObject isiAngka in angka)
         {
-                isiAngka.GetComponentInChildren<Text>().text = levelEmpat[posisi].ToString();
+                isiAngka.GetComponent<Text>().text = levelEmpat[posisi].ToString();
                 posisi++;
         }
     }
@@ -124,7 +118,7 @@ public class SearchNum : MonoBehaviour {
         int posisi = 0;
         foreach (GameObject isiAngka in angka)
         {
-                isiAngka.GetComponentInChildren<Text>().text = levelLima[posisi].ToString();
+                isiAngka.GetComponent<Text>().text = levelLima[posisi].ToString();
                 posisi++;
         }
     }
@@ -156,16 +150,20 @@ public class SearchNum : MonoBehaviour {
     }
 
     public void bandingkan(int indek){
-        if (angka[indek].GetComponentInChildren<Text>().text.Equals(ang.ToString())) {
-            Debug.Log(angka[indek].GetComponentInChildren<Text>().text);
+        button[indek].SetActive(false);
+        if (angka[indek].GetComponent<Text>().text.Equals(ang.ToString())) {
+            Debug.Log(angka[indek].GetComponent<Text>().text);
             Debug.Log("Benar "+index);
+
         }
         else
         {
+            Debug.Log("salah");
             kes -= 1;
             Debug.Log(kes);
             pertanyaan = "Dari 6 kotak, Carilah kotak yang bernilai " + ang.ToString() + ". Kotak sudah dalam keadaan terurut. Anda memiliki " + kes.ToString() + " kesempatan untuk menemukannya";
             soal.text = pertanyaan;
+
             if (kes == 0)
             {
                 Debug.Log("Kalah");
