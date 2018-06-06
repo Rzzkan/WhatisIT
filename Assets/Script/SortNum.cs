@@ -7,16 +7,27 @@ using UnityEngine.UI;
 public class SortNum : MonoBehaviour {
     public GameObject[] tempat, urutan, angka;
     public GameObject banding1, banding2;
+    public RectTransform panel;
+    public Text textPanel;
+    public Text kondisi;
+    public Button buttonPanel;
+    public Button buttonOk;
 
-	// Use this for initialization
-	void Start () {
+
+    // Use this for initialization
+    void Start () {
         tempat = GameObject.FindGameObjectsWithTag("Tempat");
         urutan = GameObject.FindGameObjectsWithTag("Urutan");
         angka = GameObject.FindGameObjectsWithTag("Angka");
         banding1 = GameObject.Find("banding1");
         banding2 = GameObject.Find("banding2");
-
+        textPanel = GameObject.Find("isiPanel").GetComponent<Text>();
+        kondisi = GameObject.Find("Kondisi").GetComponent<Text>();
+        panel = GameObject.Find("Panel").GetComponent<RectTransform>();
+        buttonPanel = GameObject.Find("buttonP").GetComponent<Button>();
+        buttonOk = GameObject.Find("panelOk").GetComponent<Button>();
         satu();
+        frameOut();
     }
 	
 	// Update is called once per frame
@@ -43,12 +54,25 @@ public class SortNum : MonoBehaviour {
             Debug.Log(angka2);
 
             if (Convert.ToInt32(angka1) > Convert.ToInt32(angka2))
+                                
             {
+                buttonOk.gameObject.SetActive(true);
+                buttonPanel.gameObject.SetActive(false);
+                kondisi.text = "Hasil";
+                buttonPanel.GetComponentInChildren<Text>().text = "OK";
+                textPanel.text = "Besar Angka 1";
+                frameIn();
                 Debug.Log("besar angka1");
             }
 
             else if (Convert.ToInt32(angka1) < Convert.ToInt32(angka2))
             {
+                buttonOk.gameObject.SetActive(true);
+                buttonPanel.gameObject.SetActive(false);
+                kondisi.text = "Hasil";
+                buttonPanel.GetComponentInChildren<Text>().text = "OK";
+                textPanel.text = "Besar Angka 2";
+                frameIn();
                 Debug.Log("besar angka2");
             }
             else
@@ -77,10 +101,22 @@ public class SortNum : MonoBehaviour {
             {
                 if (ang1 < ang2 & ang2 < ang3)
                 {
+                    buttonOk.gameObject.SetActive(false);
+                    buttonPanel.gameObject.SetActive(true);
+                    kondisi.text = "Hasil";
+                    buttonPanel.GetComponentInChildren<Text>().text = "OK";
+                    textPanel.text = "Jawaban Sudah Terurut";
+                    frameIn();
                     Debug.Log("Benar");
                 }
                 else
                 {
+                    buttonOk.gameObject.SetActive(true);
+                    buttonPanel.gameObject.SetActive(false);
+                    kondisi.text = "Hasil";
+                    buttonPanel.GetComponentInChildren<Text>().text = "OK";
+                    textPanel.text = "Masih Salah";
+                    frameIn();
                     Debug.Log("Masih Salah");
                 }
             }
@@ -91,6 +127,28 @@ public class SortNum : MonoBehaviour {
         {
             Debug.Log("Error");
         }
+
+        
+    }
+    public void frameIn()
+    {
+        Vector2 pos = new Vector2(10f, 60f);
+        panel.anchoredPosition = pos;
+    }
+
+    public void frameOut()
+    {
+        Vector2 pos = new Vector2(10f, 1000f);
+        panel.anchoredPosition = pos;
+    }
+    
+    public void Ok()
+    {
+        frameOut();
+    }
+
+    public void levelNext()
+    {
 
     }
 }
